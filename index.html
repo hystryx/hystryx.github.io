@@ -125,18 +125,42 @@
   .tags { display: flex; flex-wrap: wrap; gap: 6px; }
   .tag { font-size: 12px; padding: 4px 10px; border-radius: 999px; background: var(--bg-soft); border: 1px solid var(--line); color: var(--muted); }
 
-  .job { border: 1px solid var(--line); border-radius: 16px; background: var(--card); padding: 22px 24px; margin-bottom: 14px; }
-  .job-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
-  .job-co { font-size: 19px; font-weight: 700; }
-  .job-dates { font-size: 13px; color: var(--muted); }
-  .job-role { color: var(--accent); font-weight: 600; margin: 2px 0 2px; }
-  .job-meta { font-size: 13px; color: var(--muted); margin-bottom: 8px; }
-  .badge { font-size: 11px; letter-spacing: 1px; color: var(--accent-2); border: 1px solid color-mix(in srgb, var(--accent-2) 50%, transparent); border-radius: 6px; padding: 1px 7px; margin-left: 8px; vertical-align: middle; }
-  .job ul { margin: 8px 0 0; padding-left: 18px; color: var(--muted); }
-  .job li { margin-bottom: 6px; }
-  .job p { margin: 6px 0 0; color: var(--muted); }
-  .projects { margin-top: 12px; font-size: 14px; }
-  .projects span { color: var(--muted); }
+  .timeline { position: relative; }
+  .timeline::before { content: ""; position: absolute; left: 7px; top: 10px; bottom: 10px; width: 2px; background: linear-gradient(var(--accent), var(--line) 40%); }
+  .tl-item { position: relative; display: grid; grid-template-columns: 230px 1fr; gap: 32px; padding: 0 0 44px 34px; }
+  .tl-item::before { content: ""; position: absolute; left: 1px; top: 8px; width: 10px; height: 10px; border-radius: 50%; background: var(--bg); border: 2px solid var(--accent); }
+  .tl-item > div { min-width: 0; }
+  .job-co { font-size: 19px; font-weight: 700; line-height: 1.3; }
+  .job-dates { font-size: 12.5px; color: var(--accent); margin-top: 4px; }
+  .job-role { font-weight: 700; margin: 8px 0 2px; }
+  .job-meta { font-size: 13px; color: var(--muted); }
+  .badge { display: inline-block; margin-top: 10px; font-size: 11px; letter-spacing: 1px; color: var(--accent-2); border: 1px solid color-mix(in srgb, var(--accent-2) 50%, transparent); border-radius: 6px; padding: 2px 8px; }
+  .job-intro { margin: 0 0 12px; font-size: 16px; }
+  .job-body ul { list-style: none; margin: 0; padding: 0; color: var(--muted); }
+  .job-body li { position: relative; padding-left: 22px; margin-bottom: 9px; }
+  .job-body li::before { content: "→"; position: absolute; left: 0; color: var(--accent); }
+  .job-body p { margin: 0; color: var(--muted); }
+
+  details.projects { margin-top: 18px; border: 1px solid var(--line); border-radius: 14px; background: var(--card); }
+  details.projects summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 12px; padding: 12px 16px; }
+  details.projects summary::-webkit-details-marker { display: none; }
+  .p-title { font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; }
+  .p-count { font-size: 12px; color: var(--accent); background: var(--bg-soft); border: 1px solid var(--line); border-radius: 6px; padding: 0 7px; }
+  .p-icons { display: flex; gap: 6px; flex: 1; min-width: 0; overflow: hidden; }
+  .p-icons img { width: 28px; height: 28px; border-radius: 7px; flex: none; }
+  .p-chev { color: var(--muted); transition: transform .2s; flex: none; }
+  details[open] .p-chev { transform: rotate(180deg); }
+  .p-list { border-top: 1px solid var(--line); padding: 6px 16px 10px; }
+  .p-row { display: grid; grid-template-columns: 48px 1fr; gap: 14px; padding: 12px 0; border-bottom: 1px dashed var(--line); }
+  .p-row:last-child { border-bottom: none; }
+  .p-row img { width: 48px; height: 48px; border-radius: 12px; }
+  .p-name { font-weight: 700; }
+  .p-meta { font-size: 12.5px; color: var(--muted); display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin: 1px 0 4px; }
+  .live { color: var(--accent); border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent); border-radius: 5px; padding: 0 6px; font-size: 11px; }
+  .role { color: var(--accent-2); border: 1px solid color-mix(in srgb, var(--accent-2) 45%, transparent); border-radius: 5px; padding: 0 6px; font-size: 11px; }
+  .p-desc { margin: 0 0 6px; font-size: 14px; color: var(--muted); }
+  .p-links { display: flex; gap: 8px; flex-wrap: wrap; }
+  .p-links a { font-size: 12.5px; border: 1px solid var(--line); border-radius: 8px; padding: 3px 10px; background: var(--bg-soft); }
 
   footer { margin-top: 56px; border-top: 1px solid var(--line); padding: 28px 0 40px; color: var(--muted); font-size: 14px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 
@@ -146,6 +170,7 @@
     .photo { width: 180px; height: 180px; order: -1; }
     .about { grid-template-columns: 1fr; }
     .cards { grid-template-columns: 1fr; }
+    .tl-item { grid-template-columns: 1fr; gap: 14px; padding-left: 28px; }
   }
   @media (max-width: 560px) {
     .wrap { padding: 0 16px; }
@@ -245,78 +270,197 @@
 
   <section id="work">
     <div class="sec-head"><span class="sec-num mono">03</span><h3>Work Experience</h3></div>
+    <div class="timeline">
 
-    <div class="job">
-      <div class="job-top"><span class="job-co">Super Banana Studios<span class="badge mono">CURRENT</span></span><span class="job-dates mono">Aug 2025 - Present</span></div>
-      <div class="job-role">Unity Developer</div>
-      <div class="job-meta">Warsaw, Poland · Remote</div>
-      <ul>
-        <li>Co-built the studio's AI-driven development system from scratch: a strict HMVC controller-tree architecture plus private Claude Code plugins (skills, hooks, agents). Time to release dropped from about 4 months for the first game to about 2 months for the next, letting any team member ship their own idea production-ready.</li>
-        <li>Shipped 4 mobile games from scratch to release in one year with AI agents inside this system: gameplay mechanics, boosters, analytics, A/B tests and local notifications.</li>
-        <li>Designed the LiveOps architecture: a time-zone-safe event service and live events on top of it, including Tournament Race and the Daily Cup leaderboard with bot rivals, Daily Quests and progression events.</li>
-        <li>Extracted reusable features (Daily Quests, popup queue, notifications, LiveOps) into the studio's shared Core framework used by all games.</li>
-        <li>Automated routine development work with AI pipelines: project documentation, task breakdown and autonomous ticket execution, code review against team rules, and on-device SDK and analytics checks.</li>
-        <li>Built AI commands that generate marketing creatives (UA video ads and playables) from a running game.</li>
-      </ul>
-      <div class="projects"><span>Games: </span><a href="https://play.google.com/store/apps/details?id=io.superbanana.travelsort">Travel Sort</a> · <a href="https://play.google.com/store/apps/details?id=io.superbanana.jigsawmaster">Jigsaw Masters</a> · <a href="https://play.google.com/store/apps/details?id=io.superbanana.boomdoku">Boomdoku</a> · <a href="https://play.google.com/store/apps/details?id=io.superbanana.associationsdrop">Associations Drop</a></div>
-    </div>
+      <div class="tl-item">
+        <div>
+          <div class="job-co">Super Banana Studios</div>
+          <div class="job-dates mono">Aug 2025 - Present</div>
+          <div class="job-role">Unity Developer</div>
+          <div class="job-meta">Warsaw, Poland · Remote</div>
+          <span class="badge mono">CURRENT ROLE</span>
+        </div>
+        <div class="job-body">
+          <ul>
+            <li>Co-built the studio's AI-driven development system from scratch: a strict HMVC controller-tree architecture plus private Claude Code plugins (skills, hooks, agents). Time to release dropped from about 4 months for the first game to about 2 months for the next, letting any team member ship their own idea production-ready.</li>
+            <li>Shipped 4 mobile games from scratch to release in one year with AI agents inside this system: gameplay mechanics, boosters, analytics, A/B tests and local notifications.</li>
+            <li>Designed the LiveOps architecture: a time-zone-safe event service and live events on top of it, including Tournament Race and the Daily Cup leaderboard with bot rivals, Daily Quests and progression events.</li>
+            <li>Extracted reusable features (Daily Quests, popup queue, notifications, LiveOps) into the studio's shared Core framework used by all games.</li>
+            <li>Automated routine development work with AI pipelines: project documentation, task breakdown and autonomous ticket execution, code review against team rules, and on-device SDK and analytics checks.</li>
+            <li>Built AI commands that generate marketing creatives (UA video ads and playables) from a running game.</li>
+          </ul>
+          <details class="projects">
+            <summary>
+              <span class="p-title">Projects</span><span class="p-count mono">6</span>
+              <span class="p-icons"><img src="images/travelsort.png" alt=""><img src="images/jigsawmaster.png" alt=""><img src="images/boomdoku.png" alt=""><img src="images/associationsdrop.png" alt=""><img src="images/arrowmania.png" alt=""><img src="images/wouldyourather.png" alt=""></span>
+              <svg class="p-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="p-list">
+              <div class="p-row"><img src="images/travelsort.png" alt="Travel Sort icon"><div>
+                <div class="p-name">Travel Sort: Match Puzzle</div>
+                <div class="p-meta"><span>iOS · Android</span><span class="live">Live</span><span class="role">Built from scratch</span></div>
+                <p class="p-desc">Triple-match sorting puzzle with travel-themed levels, boosters and live events.</p>
+                <div class="p-links"><a href="https://play.google.com/store/apps/details?id=io.superbanana.travelsort">Google Play</a><a href="https://apps.apple.com/us/app/travel-sort-match-puzzle/id6752299562">App Store</a></div>
+              </div></div>
+              <div class="p-row"><img src="images/jigsawmaster.png" alt="Jigsaw Masters icon"><div>
+                <div class="p-name">Jigsaw Masters!</div>
+                <div class="p-meta"><span>iOS · Android</span><span class="live">Live</span><span class="role">Built from scratch</span></div>
+                <p class="p-desc">Jigsaw puzzle where pieces merge into larger groups, with a move budget and boosters.</p>
+                <div class="p-links"><a href="https://play.google.com/store/apps/details?id=io.superbanana.jigsawmaster">Google Play</a><a href="https://apps.apple.com/us/app/jigsaw-masters/id6770286093">App Store</a></div>
+              </div></div>
+              <div class="p-row"><img src="images/boomdoku.png" alt="Boomdoku icon"><div>
+                <div class="p-name">Boomdoku! Logic Puzzle Game</div>
+                <div class="p-meta"><span>Android</span><span class="live">Live</span><span class="role">Built from scratch</span></div>
+                <p class="p-desc">Logic puzzle with daily levels, a level editor and a Daily Cup leaderboard.</p>
+                <div class="p-links"><a href="https://play.google.com/store/apps/details?id=io.superbanana.boomdoku">Google Play</a></div>
+              </div></div>
+              <div class="p-row"><img src="images/associationsdrop.png" alt="Associations Drop icon"><div>
+                <div class="p-name">Associations Drop: Card Puzzle</div>
+                <div class="p-meta"><span>Android</span><span class="live">Live</span><span class="role">Built from scratch</span></div>
+                <p class="p-desc">Card puzzle about grouping words by association, with hint and assist boosters.</p>
+                <div class="p-links"><a href="https://play.google.com/store/apps/details?id=io.superbanana.associationsdrop">Google Play</a></div>
+              </div></div>
+              <div class="p-row"><img src="images/arrowmania.png" alt="Arrow Mania icon"><div>
+                <div class="p-name">Arrow Mania!</div>
+                <div class="p-meta"><span>iOS · Android</span><span class="live">Live</span><span class="role">Contributor</span></div>
+                <p class="p-desc">Arrow puzzle where the player clears the board by sending arrows out in the right order.</p>
+                <div class="p-links"><a href="https://play.google.com/store/apps/details?id=io.superbanana.arrowmania">Google Play</a><a href="https://apps.apple.com/us/app/arrow-mania/id6767848288">App Store</a></div>
+              </div></div>
+              <div class="p-row"><img src="images/wouldyourather.png" alt="Would You Rather icon"><div>
+                <div class="p-name">Would You Rather? Party!</div>
+                <div class="p-meta"><span>iOS · Android</span><span class="live">Live</span><span class="role">Contributor</span></div>
+                <p class="p-desc">Party game of "would you rather" questions to play with friends.</p>
+                <div class="p-links"><a href="https://play.google.com/store/apps/details?id=io.superbanana.wouldyourather">Google Play</a><a href="https://apps.apple.com/us/app/would-you-rather-party/id6772253677">App Store</a></div>
+              </div></div>
+            </div>
+          </details>
+        </div>
+      </div>
 
-    <div class="job">
-      <div class="job-top"><span class="job-co">Playtika</span><span class="job-dates mono">Jun 2024 - Aug 2025</span></div>
-      <div class="job-role">Unity Developer</div>
-      <div class="job-meta">Warsaw, Poland · Hybrid</div>
-      <ul>
-        <li>Improved and maintained legacy architecture, enhancing system reliability and performance.</li>
-        <li>Designed scalable architecture for new features.</li>
-        <li>Developed a custom A/B testing solution and analytics data collection pipelines.</li>
-        <li>Wrote unit and integration tests; supported production and on-call rotations.</li>
-      </ul>
-      <div class="projects"><span>Game: </span><a href="https://play.google.com/store/apps/details?id=net.supertreat.solitaire">Solitaire Grand Harvest</a></div>
-    </div>
+      <div class="tl-item">
+        <div>
+          <div class="job-co">Playtika</div>
+          <div class="job-dates mono">Jun 2024 - Aug 2025</div>
+          <div class="job-role">Unity Developer</div>
+          <div class="job-meta">Warsaw, Poland · Hybrid</div>
+        </div>
+        <div class="job-body">
+          <ul>
+            <li>Improved and maintained legacy architecture, enhancing system reliability and performance.</li>
+            <li>Designed scalable architecture for new features.</li>
+            <li>Developed a custom A/B testing solution and analytics data collection pipelines.</li>
+            <li>Wrote unit and integration tests; supported production and on-call rotations.</li>
+          </ul>
+          <details class="projects">
+            <summary>
+              <span class="p-title">Projects</span><span class="p-count mono">1</span>
+              <span class="p-icons"><img src="images/solitairegrandharvest.png" alt=""></span>
+              <svg class="p-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="p-list">
+              <div class="p-row"><img src="images/solitairegrandharvest.png" alt="Solitaire Grand Harvest icon"><div>
+                <div class="p-name">Solitaire Grand Harvest</div>
+                <div class="p-meta"><span>iOS · Android</span><span class="live">Live</span></div>
+                <p class="p-desc">Farm-themed TriPeaks solitaire, one of Playtika's top casual games.</p>
+                <div class="p-links"><a href="https://play.google.com/store/apps/details?id=net.supertreat.solitaire">Google Play</a><a href="https://apps.apple.com/us/app/solitaire-grand-harvest/id1223338261">App Store</a></div>
+              </div></div>
+            </div>
+          </details>
+        </div>
+      </div>
 
-    <div class="job">
-      <div class="job-top"><span class="job-co">Belka Games</span><span class="job-dates mono">May 2022 - May 2024</span></div>
-      <div class="job-role">Unity Developer</div>
-      <div class="job-meta">Remote</div>
-      <ul>
-        <li>Developed mobile games from concept to release and supported live operations.</li>
-        <li>Implemented modular architecture, core gameplay and meta features, and internal tools (level editors, debug utilities).</li>
-        <li>Integrated third-party SDKs (analytics, ads, IAP) and set up iOS and Android build pipelines.</li>
-        <li>Improved performance by fixing rendering and memory issues.</li>
-      </ul>
-      <div class="projects"><span>Game: </span><a href="https://apps.apple.com/us/app/id6457254681">Roger That: Merge Adventure!</a></div>
-    </div>
+      <div class="tl-item">
+        <div>
+          <div class="job-co">Belka Games</div>
+          <div class="job-dates mono">May 2022 - May 2024</div>
+          <div class="job-role">Unity Developer</div>
+          <div class="job-meta">Remote</div>
+        </div>
+        <div class="job-body">
+          <ul>
+            <li>Developed mobile games from concept to release and supported live operations.</li>
+            <li>Implemented modular architecture, core gameplay and meta features, and internal tools (level editors, debug utilities).</li>
+            <li>Integrated third-party SDKs (analytics, ads, IAP) and set up iOS and Android build pipelines.</li>
+            <li>Improved performance by fixing rendering and memory issues.</li>
+          </ul>
+          <details class="projects">
+            <summary>
+              <span class="p-title">Projects</span><span class="p-count mono">1</span>
+              <span class="p-icons"><img src="images/rogerthat.png" alt=""></span>
+              <svg class="p-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="p-list">
+              <div class="p-row"><img src="images/rogerthat.png" alt="Roger That icon"><div>
+                <div class="p-name">Roger That: Merge Adventure!</div>
+                <div class="p-meta"><span>iOS · Android</span><span class="live">Live</span></div>
+                <p class="p-desc">Merge and tycoon game about building up a military base.</p>
+                <div class="p-links"><a href="https://play.google.com/store/apps/details?id=com.belkagames.mwe">Google Play</a><a href="https://apps.apple.com/us/app/roger-that-merge-adventure/id6457254681">App Store</a></div>
+              </div></div>
+            </div>
+          </details>
+        </div>
+      </div>
 
-    <div class="job">
-      <div class="job-top"><span class="job-co">iTechArt Group</span><span class="job-dates mono">Oct 2021 - May 2022</span></div>
-      <div class="job-role">Unity Developer</div>
-      <div class="job-meta">Warsaw, Poland · Hybrid</div>
-      <ul>
-        <li>Refactored large parts of a legacy Unity application and significantly increased unit and integration test coverage.</li>
-        <li>Extended an internal integration-testing tool that runs real Zenject installers to simulate real-world scenarios.</li>
-        <li>Did regular code reviews and improved memory management and asset handling.</li>
-      </ul>
-      <div class="projects"><span>Game: </span><a href="https://apps.apple.com/us/app/id1123582513">Cashman Casino</a></div>
-    </div>
+      <div class="tl-item">
+        <div>
+          <div class="job-co">iTechArt Group</div>
+          <div class="job-dates mono">Oct 2021 - May 2022</div>
+          <div class="job-role">Unity Developer</div>
+          <div class="job-meta">Warsaw, Poland · Hybrid</div>
+        </div>
+        <div class="job-body">
+          <ul>
+            <li>Refactored large parts of a legacy Unity application and significantly increased unit and integration test coverage.</li>
+            <li>Extended an internal integration-testing tool that runs real Zenject installers to simulate real-world scenarios.</li>
+            <li>Did regular code reviews and improved memory management and asset handling.</li>
+          </ul>
+          <details class="projects">
+            <summary>
+              <span class="p-title">Projects</span><span class="p-count mono">1</span>
+              <span class="p-icons"><img src="images/cashman.png" alt=""></span>
+              <svg class="p-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="p-list">
+              <div class="p-row"><img src="images/cashman.png" alt="Cashman Casino icon"><div>
+                <div class="p-name">Cashman Casino</div>
+                <div class="p-meta"><span>iOS · Android</span><span class="live">Live</span></div>
+                <p class="p-desc">Social slots game by Product Madness.</p>
+                <div class="p-links"><a href="https://apps.apple.com/us/app/id1123582513">App Store</a></div>
+              </div></div>
+            </div>
+          </details>
+        </div>
+      </div>
 
-    <div class="job">
-      <div class="job-top"><span class="job-co">APM2 Studio</span><span class="job-dates mono">Jan 2021 - Oct 2021</span></div>
-      <div class="job-role">Unity Developer</div>
-      <div class="job-meta">Minsk, Belarus</div>
-      <p>Prototyped and shipped 5+ hyper-casual games with ad and analytics SDKs and reusable architecture across projects.</p>
-    </div>
+      <div class="tl-item">
+        <div>
+          <div class="job-co">APM2 Studio</div>
+          <div class="job-dates mono">Jan 2021 - Oct 2021</div>
+          <div class="job-role">Unity Developer</div>
+          <div class="job-meta">Minsk, Belarus</div>
+        </div>
+        <div class="job-body"><p>Prototyped and shipped 5+ hyper-casual games with ad and analytics SDKs and reusable architecture across projects.</p></div>
+      </div>
 
-    <div class="job">
-      <div class="job-top"><span class="job-co">Program Solutions Plus</span><span class="job-dates mono">Oct 2020 - Jan 2021</span></div>
-      <div class="job-role">Java Developer</div>
-      <div class="job-meta">Minsk, Belarus</div>
-      <p>Built multithreaded business features for a microservice web application (Java, Spring).</p>
-    </div>
+      <div class="tl-item">
+        <div>
+          <div class="job-co">Program Solutions Plus</div>
+          <div class="job-dates mono">Oct 2020 - Jan 2021</div>
+          <div class="job-role">Java Developer</div>
+          <div class="job-meta">Minsk, Belarus</div>
+        </div>
+        <div class="job-body"><p>Built multithreaded business features for a microservice web application (Java, Spring).</p></div>
+      </div>
 
-    <div class="job">
-      <div class="job-top"><span class="job-co">Freelance</span><span class="job-dates mono">May 2019 - Oct 2020</span></div>
-      <div class="job-role">Software Developer</div>
-      <p>Hyper-casual prototypes and small web applications in indie teams.</p>
+      <div class="tl-item">
+        <div>
+          <div class="job-co">Freelance</div>
+          <div class="job-dates mono">May 2019 - Oct 2020</div>
+          <div class="job-role">Software Developer</div>
+        </div>
+        <div class="job-body"><p>Hyper-casual prototypes and small web applications in indie teams.</p></div>
+      </div>
+
     </div>
   </section>
 
